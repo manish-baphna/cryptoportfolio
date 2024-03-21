@@ -13,7 +13,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class CoinmarketcapPriceFetcher implements CryptoPriceFetcher {
-    private static final String API_KEY = "e0ad3edf-da98-485e-8e5b-92ae7ffb658d"; //
+    private static final String API_KEY = "dummy-key-here"; // Put your API Key here
     // Replace with your CoinMarketCap API Key
     private static final String COIN_MARKET_CAP_API_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest";
     @Override

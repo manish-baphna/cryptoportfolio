@@ -1,8 +1,11 @@
 package com.manish.crypto;
 
+import org.springframework.stereotype.Component;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.*;
+
 
 public class CSVParser {
 

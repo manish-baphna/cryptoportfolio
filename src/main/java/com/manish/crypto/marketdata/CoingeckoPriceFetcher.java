@@ -3,6 +3,7 @@ package com.manish.crypto.marketdata;
 import com.manish.crypto.Utility;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -14,6 +15,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Component
 public class CoingeckoPriceFetcher implements CryptoPriceFetcher {
     private final String COIN_GECKO_API_URL = "https://api.coingecko.com/api/v3/simple/price";
 

@@ -7,6 +7,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -42,7 +45,10 @@ class DummyReport implements Report {
 }
 
 @ExtendWith(MockitoExtension.class)
+@SpringBootTest
 class PortfolioManagerTest {
+    @Autowired
+    @Qualifier("NUOnlyPortfolio")
     CSVParser csvParser;
 
     @Mock
@@ -53,7 +59,7 @@ class PortfolioManagerTest {
 
     @BeforeEach
     void setUp() throws IOException {
-        csvParser = new CSVParser("src\\test\\java\\resources\\fillsNU.csv");
+
         cryptoPrice = new HashMap<>() {{
             put("nucypher", 0.25);
         }};
@@ -64,13 +70,11 @@ class PortfolioManagerTest {
 
     @Test
     void when_portfolioMgrEvaluated_withMockAPI_then_resultsAreGenerated() throws IOException {
-        // TODO Remove these new with Spring Boot implementation
         PortfolioManager portfolioManager = new PortfolioManager(outputReport, mockCryptoPriceFetcher, csvParser);
 
         portfolioManager.evaluatePortfolio();
 
         String actualOutput = ((DummyReport)outputReport).reportData.toString();
-        System.out.println(actualOutput);
 
         String expectOutput = "TotalCost, TotalCurrentValue, TotalGainLoss," +
                 "-502.2320058831315,477.49324593000006,-24.73875995313142";

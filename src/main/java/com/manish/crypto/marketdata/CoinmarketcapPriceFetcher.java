@@ -11,9 +11,14 @@ import java.util.Set;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CoinmarketcapPriceFetcher implements CryptoPriceFetcher {
-    private static final String API_KEY = "dummy-key-here"; // Put your API Key here
+
+    // IMPORTANT : Put your API Key here else this pricer and unit tests for this won't work
+    // If you don't have one, go to coinmarketcap.com and generate free of cost
+    private static final String API_KEY = "dummy-key-here";
     // Replace with your CoinMarketCap API Key
     private static final String COIN_MARKET_CAP_API_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest";
     @Override

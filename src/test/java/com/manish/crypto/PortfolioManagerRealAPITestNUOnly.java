@@ -8,34 +8,34 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.Bean;
 
 import java.io.IOException;
 
 @SpringBootTest
-class PortfolioManagerRealAPITest {
+class PortfolioManagerRealAPITestNUOnly {
+
     @Autowired
-    @Qualifier("CoingeckoPriceFetcher")
+    @Qualifier("CoinmarketcapPriceFetcher")
     CryptoPriceFetcher cryptoPriceFetcher;
-
     @Autowired
-    @Qualifier("FullPortfolio")
+    @Qualifier("NUOnlyPortfolio")
     CSVParser csvParser;
+    @Autowired
+    @Qualifier("CoinmarketcapReport")
+    Report outputCSVReport;
 
     @Autowired
-    @Qualifier("CoingeckoReport")
-    Report outputCSVReport;
+    PortfolioManager portfolioManager;
 
     @BeforeEach
     void setUp() {
     }
 
     @Test
-    void when_portfolioMgrEvaluated_withCoingecko_then_resultsAreGenerated() throws IOException {
+    void when_portfolioMgrEvaluated_withCoinmarketcap_then_resultsAreGenerated() throws IOException {
 
         PortfolioManager portfolioManager = new PortfolioManager(outputCSVReport, cryptoPriceFetcher, csvParser);
         portfolioManager.evaluatePortfolio();
 
     }
-
 }
